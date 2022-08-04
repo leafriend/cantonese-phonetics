@@ -1,24 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="input">
+        <textarea placeholder='[&#10;["信", "seon3"]&#10;]'></textarea>
+      </div>
+      <div className="button">
+        <select>
+          <option value="Jyutping">粵拼</option>
+        </select>
+        <button>Convert</button>
+        <select>
+          <option value="SidneyLau">劉錫祥</option>
+        </select>
+      </div>
+      <div className="output">
+      <textarea placeholder='[&#10;["信", "seun"]&#10;]'></textarea>
+      </div>
     </div>
   );
 }
