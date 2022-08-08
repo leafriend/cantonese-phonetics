@@ -45,7 +45,7 @@ function App() {
 
       <div className='result'>
         <textarea
-          placeholder='[&#10;["信", "seun"]&#10;]'
+          placeholder='[&#10;["信", "sun3"]&#10;]'
           value={result}
           readOnly
         ></textarea>
