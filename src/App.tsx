@@ -1,22 +1,26 @@
 import React from 'react';
 import './App.scss';
+import { convert, Romanisation, RomanisationName } from './convert';
 
 function App() {
 
   const [input, setInput] = React.useState('');
+  const [from, setFrom] = React.useState(Romanisation.Jyutping);
+  const [to, setTo] = React.useState(Romanisation.SidneyLau);
   const [result, setResult] = React.useState('');
 
   function inputChanged(value: string) {
     setInput(value);
   }
 
-  function convert(): void {
-    const result = input;
+  function doConvert(): void {
+    const result = convert(input, from, to);
     setResult(result);
   }
 
   return (
     <div className='App'>
+
       <div className='input'>
         <textarea
           placeholder='[&#10;["信", "seon3"]&#10;]'
@@ -24,23 +28,29 @@ function App() {
           value={input}
         ></textarea>
       </div>
-      <div className='button'>
-        <select>
-          <option value='Jyutping'>粵拼</option>
+
+      <div className='actions'>
+        <select value={from} onChange={e => setFrom(e.target.value as Romanisation)}>
+          {Object.keys(Romanisation).map(key => (
+            <option key={key} value={key}>{RomanisationName[key as Romanisation]}</option>
+          ))}
         </select>
-        <button onClick={_ => convert()}>Convert</button>
-        <select>
-          <option value='Jyutping'>粵拼</option>
-          {/* <option value='SidneyLau'>劉錫祥</option> */}
+        <button onClick={_ => doConvert()}>Convert</button>
+        <select value={to} onChange={e => setTo(e.target.value as Romanisation)}>
+          {Object.keys(Romanisation).map(key => (
+            <option key={key} value={key}>{RomanisationName[key as Romanisation]}</option>
+          ))}
         </select>
       </div>
+
       <div className='result'>
-      <textarea
-        placeholder='[&#10;["信", "seun"]&#10;]'
-        value={result}
-        readOnly
-      ></textarea>
+        <textarea
+          placeholder='[&#10;["信", "sun3"]&#10;]'
+          value={result}
+          readOnly
+        ></textarea>
       </div>
+
     </div>
   );
 }
